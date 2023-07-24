@@ -20,6 +20,10 @@ class App extends Component {
       .catch(() => console.log("requested resource not found"));
   }
 
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value });
+  };
+
   render() {
     const { monsters, searchField } = this.state;
     const filteredMonstersList = monsters.filter((monster) =>
@@ -28,9 +32,10 @@ class App extends Component {
 
     return (
       <div className="App">
+        <h1>Monster Rolodex</h1>
         <SearchBox
           placeholder="search monsters"
-          handleChange={(e) => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange}
         />
         <CardList monstersList={filteredMonstersList} />
       </div>
